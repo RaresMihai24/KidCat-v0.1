@@ -22,10 +22,10 @@ class App(customtkinter.CTk):
 
         self.image = customtkinter.CTkImage(Image.open(current_path + "/img/logo.png"), size=(250, 250))
 
-        self.image_label = customtkinter.CTkLabel(self, image=self.image, text="", bg_color="#000001")
-        self.image_label.grid(row=0, column=0, sticky="n", padx=0, pady=25)
+        self.image_logo = customtkinter.CTkButton(self, image=self.image, text="", fg_color="#000001", hover="False", corner_radius=32, bg_color="#000001") #bg_color="#000001")
+        self.image_logo.grid(row=0, column=0, sticky="n", padx=0, pady=25)
 
-        pywinstyles.set_opacity(self.image_label, value=1, color="#000001")
+        pywinstyles.set_opacity(self.image_logo, value=1, color="#000001")
 
 if __name__ == "__main__":
     app = App()
