@@ -6,16 +6,6 @@ import os
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
-def crop_circle(image_path, size):
-    img = Image.open(image_path).convert("RGBA")
-    mask = Image.new("L", img.size, 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0) + img.size, fill=255)
-    circular_image = ImageOps.fit(img, mask.size, centering=(0.5, 0.5))
-    circular_image.putalpha(mask)
-    return circular_image.resize(size, Image.LANCZOS)
-
-
 class App(customtkinter.CTk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,8 +20,7 @@ class App(customtkinter.CTk):
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image, text="")
         self.bg_image_label.grid(row=0, column=0)
 
-        circular_logo = crop_circle(current_path + "/img/logo.jpeg", (250, 250))
-        self.image = customtkinter.CTkImage(light_image=circular_logo, size=(250, 250))
+        self.image = customtkinter.CTkImage(Image.open(current_path + "/img/logo.png"), size=(250, 250))
 
         self.image_label = customtkinter.CTkLabel(self, image=self.image, text="", bg_color="#000001")
         self.image_label.grid(row=0, column=0, sticky="n", padx=0, pady=25)
