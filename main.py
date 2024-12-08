@@ -4,6 +4,7 @@ import os
 from functions import play_random_sfx
 import pywinstyles
 import pygame
+import tkinter
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -102,7 +103,9 @@ if __name__ == "__main__":
     pygame.mixer.music.load(ambient_sound)
     channel2.play(pygame.mixer.Sound(ambient_sound), -1)
     channel2.set_volume(0.01)
+	
     app = App()
+    app.eval('tk::PlaceWindow . center')
     app.mainloop()
 
 
